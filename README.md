@@ -2,7 +2,7 @@
 
 This repository serves data from TimescaleDB ([converted from Redis](https://github.com/INTEARnear/events-api-redis-to-db)) to public REST API endpoints.
 
-The public API is hosted at https://events.indexer.intear.tech/
+The public API is hosted at https://events.intear.tech/
 
 Endpoints:
 
@@ -24,6 +24,6 @@ Query parameters:
 
 The pagination is done by blocks, not events, so that it's easier for client libraries to paginate if a single block has hundreds of events. It skips blocks that contain no events. For example, you set `blocks=3`, it will return block 118058295 which contains 1 event, block 118058296 that contains 1 event, and block 118058299 that contains 2 events, so you will receive 4 events in total. After that, you can use `${events[events.length - 1].block_timestamp_nanosec}` as the next `start_block_timestamp_nanosec` (don't forget to check if `events.length !== 0`) and it's guaranteed that you won't miss any events.
 
-Example: https://events.indexer.intear.tech/v0/nft/nft_transfer?start_block_timestamp_nanosec=1714988307491111000&blocks=3&token_account_id=uwon.hot.tg
+Example: https://events.intear.tech/v0/nft/nft_transfer?start_block_timestamp_nanosec=1714988307491111000&blocks=3&token_account_id=uwon.hot.tg
 
-Currently, only NFT API is implemented.
+Currently, only NFT API is implemented, and the public API doesn't have full event history, which will be fixed soon.
