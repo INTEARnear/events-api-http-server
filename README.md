@@ -22,7 +22,7 @@ Query parameters:
 - `blocks` is the number of unique blocks you want to retrieve events from, max 50.
 - Other query parameters are filters.
 
-The pagination is done by blocks, not events, so that it's easier for client libraries to paginate if a single block has hundreds of events. It skips blocks that contain no events. For example, you set `blocks=3`, it will return block 118058295 which contains 1 event, block 118058296 that contains 1 event, and block 118058299 that contains 2 events, so you will receive 4 events in total. After that, you can use `${events[events.length - 1].block_timestamp_nanosec}` as the next `start_block_timestamp_nanosec` (don't forget to check if `events.length !== 0`) and it's guaranteed that you won't miss any events.
+The pagination is done by blocks, not events, so that it's easier for client libraries to paginate if a single block has hundreds of events. It skips blocks that contain no events. For example, if you set `blocks=3`, the server will return block 118058295 which contains 1 event, block 118058296 that contains 1 event, and block 118058299 that contains 2 events, so you will receive 4 events in total, as one array. After that, you can use `${events[events.length - 1].block_timestamp_nanosec}` as the next `start_block_timestamp_nanosec` (don't forget to check if `events.length !== 0`) and it's guaranteed that you won't miss any events.
 
 Example: https://events.intear.tech/v0/nft/nft_transfer?start_block_timestamp_nanosec=1714988307491111000&blocks=3&token_account_id=uwon.hot.tg
 
