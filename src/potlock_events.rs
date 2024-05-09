@@ -28,6 +28,7 @@ pub struct PotlockDonationEvent {
     pub donation_id: DonationId,
     pub donor_id: AccountId,
     pub total_amount: Balance,
+    pub ft_id: AccountId,
     pub message: Option<String>,
     #[serde(with = "chrono::serde::ts_milliseconds")]
     pub donated_at: DateTime<Utc>,
@@ -68,7 +69,7 @@ pub async fn potlock_donation(
             ORDER BY t
             LIMIT $2
         )
-        SELECT transaction_id, receipt_id, block_height, timestamp, donation_id, donor_id, total_amount, message, donated_at, project_id, protocol_fee, referrer_id, referrer_fee
+        SELECT transaction_id, receipt_id, block_height, timestamp, donation_id, donor_id, total_amount, ft_id, message, donated_at, project_id, protocol_fee, referrer_id, referrer_fee
         FROM potlock_donation
         INNER JOIN blocks ON timestamp = blocks.t
         WHERE ($3::TEXT IS NULL OR project_id = $3)
