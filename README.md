@@ -1,5 +1,9 @@
 # events-api-http-server
 
+> This repository is archived, this logic was rewritten and is now a part of [inevents](https://github.com/INTEARnear/inevents).
+
+---
+
 This repository serves data from TimescaleDB ([converted from Redis](https://github.com/INTEARnear/events-api-redis-to-db)) to public REST API endpoints.
 
 The public API is hosted at https://events.intear.tech/
